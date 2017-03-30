@@ -9,25 +9,27 @@
 <!-- <meta name="apple-mobile-web-app-title" content="标题名称">添加到IOS主屏后的标题-->
 <meta name="format-detection" content="telphone=no, email=no"/><!--忽略页面中的数字识别为电话号码邮箱格式为邮箱-->
 <title>基于zepto的手机端对话框特效</title>
+<link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/mdialog.css">
-<style type="text/css">
-    *{margin: 0px;padding: 0px;}
-    body{font-size: 12px;padding: 20px;}
-    button{display: block;width: 100%;padding: 10px;margin: 20px 0px;background-color: green;border-radius: 10px;color:#fff;border: 1px solid #eee;}
-</style>
+<link rel="stylesheet" type="text/css" href="css/zepto.mdater.css">
+<link rel="stylesheet" type="text/css" href="css/zepto.mdatetimer.css">
 </head>
 <body>
+<div class="box">
+    <button id="success">没有传递任何参数(需要手动关闭)</button>
+    <button id="error">弹出一个不带任何按钮，且是警告的框，并且2秒后自动关闭</button>
+    <button id="load">弹出一个有确认和取消按钮的成功框，点击按钮直接关闭</button>
+    <button id="tip">弹出一个有确认按钮的警告框，点击按钮不关闭(需要手动关闭)</button>
+    <button id="btn5">弹出一个多组合按钮框，且看按钮样式可定制</button>
+    <input class="in" id="time" placeholder="日期选择" type="text"/>
+    <input class="in" type="text" id="picktime" placeholder="日期时间选择" readonly="readonly">
 
-<button id="success">没有传递任何参数(需要手动关闭)</button>
-<button id="error">弹出一个不带任何按钮，且是警告的框，并且2秒后自动关闭</button>
-<button id="load">弹出一个有确认和取消按钮的成功框，点击按钮直接关闭</button>
-<button id="tip">弹出一个有确认按钮的警告框，点击按钮不关闭(需要手动关闭)</button>
-<button id="btn5">弹出一个多组合按钮框，且看按钮样式可定制</button>
+</div>
 
-<script type="text/javascript" src="js/zepto.js"></script>
-<script type="text/javascript" src="js/touch.js"></script>
-<script type="text/javascript" src="js/event.js"></script>
+<script type="text/javascript" src="js/zepto.min.js"></script>
 <script type="text/javascript" src="js/mdialog.js"></script>
+<script type="text/javascript" src="js/zepto.mdater.js"></script>
+<script type="text/javascript" src="js/zepto.mdatetimer.js"></script>
 <script type="text/javascript">
 	 //成功  
     $("#success").tap(function(){
@@ -48,8 +50,25 @@
         new TipBox({type:'load',str:"努力加载中..",setTime:1500,callBack:function(){
             new TipBox({type:'success',str:'操作成功',hasBtn:true});
         }});  
-    });  
-      
+    });
+
+     $('#time').mdater({
+         minDate : new Date(2015, 12, 13)
+     });
+
+     $('#picktime').mdatetimer({
+         mode : 2, //时间选择器模式：1：年月日，2：年月日时分（24小时），3：年月日时分（12小时），4：年月日时分秒。默认：1
+         format : 2, //时间格式化方式：1：2015年06月10日 17时30分46秒，2：2015-05-10  17:30:46。默认：2
+         years : [2000, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017], //年份数组
+         nowbtn : true, //是否显示现在按钮
+         onOk : function(){
+             //alert('OK');
+         },  //点击确定时添加额外的执行函数 默认null
+         onCancel : function(){
+             //alert('A');
+         } //点击取消时添加额外的执行函数 默认null
+     });
+
 </script>
 </body>
 </html>
