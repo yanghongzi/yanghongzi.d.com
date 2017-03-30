@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/><!--强制让文档的宽度与设备的宽度保持1:1，并且文档最大的宽度比例是1.0，且不允许用户点击屏幕放大浏览-->
+<meta name="apple-mobile-web-app-capable" content="yes" /><!--删除苹果默认的工具栏和菜单栏->
+<meta http-equiv="Cache-Control" content="no-siteapp"><!--禁止百度转码显示-->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><!--设置苹果工具栏颜色（default:白色，black:黑色，black-translucent：半透明）-->
+<!-- <meta name="apple-mobile-web-app-title" content="标题名称">添加到IOS主屏后的标题-->
+<meta name="format-detection" content="telphone=no, email=no"/><!--忽略页面中的数字识别为电话号码邮箱格式为邮箱-->
+<title>基于zepto的手机端对话框特效</title>
+<link rel="stylesheet" type="text/css" href="css/mdialog.css">
+<style type="text/css">
+    *{margin: 0px;padding: 0px;}
+    body{font-size: 12px;padding: 20px;}
+    button{display: block;width: 100%;padding: 10px;margin: 20px 0px;background-color: green;border-radius: 10px;color:#fff;border: 1px solid #eee;}
+</style>
+</head>
+<body>
+
+<button id="success">没有传递任何参数(需要手动关闭)</button>
+<button id="error">弹出一个不带任何按钮，且是警告的框，并且2秒后自动关闭</button>
+<button id="load">弹出一个有确认和取消按钮的成功框，点击按钮直接关闭</button>
+<button id="tip">弹出一个有确认按钮的警告框，点击按钮不关闭(需要手动关闭)</button>
+<button id="btn5">弹出一个多组合按钮框，且看按钮样式可定制</button>
+
+<script type="text/javascript" src="js/zepto.js"></script>
+<script type="text/javascript" src="js/touch.js"></script>
+<script type="text/javascript" src="js/event.js"></script>
+<script type="text/javascript" src="js/mdialog.js"></script>
+<script type="text/javascript">
+	 //成功  
+    $("#success").tap(function(){
+        new TipBox({type:'success',str:'操作成功',hasBtn:true});
+    });  
+    //错误  
+    $("#error").tap(function(){
+        new TipBox({type:'error',str:'对不起,出错了!',hasBtn:true});  
+    });  
+      
+    //提示  
+    $("#tip").tap(function(){
+        new TipBox({type:'tip',str:'这是提示信息',clickDomCancel:true,setTime:10000500,hasBtn:true});  
+    });  
+      
+    //加载  
+    $("#load").tap(function(){
+        new TipBox({type:'load',str:"努力加载中..",setTime:1500,callBack:function(){
+            new TipBox({type:'success',str:'操作成功',hasBtn:true});
+        }});  
+    });  
+      
+</script>
+</body>
+</html>
