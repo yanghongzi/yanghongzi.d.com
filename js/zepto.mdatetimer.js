@@ -254,7 +254,7 @@
 					$('.mt_cancel', container).css('border-right', '1px solid #4eccc4');
 				}
 
-				document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+				document.addEventListener('touchmove', function (e) {e.preventDefault }, false);
 				//初始化scroll
 				var elHeight = itemHeight;
 
