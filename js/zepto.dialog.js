@@ -1,6 +1,3 @@
-/**
- * Created by LBF on 2017/3/24.
- */
 ;(function($){
     var Dialog=function(config){
        var _this=this;
